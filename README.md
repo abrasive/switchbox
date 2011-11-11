@@ -1,6 +1,12 @@
 # What?
 SwitchBox sets up a key combination (Alt-Tab) to flip between open windows.
-Run it using "make run".
+Run it:
+
+    make run
+
+Default theme is "high contrast" (hc). Recompile with UI=win32 for the original theme:
+
+    make clean UI=win32 run
 
 # Why...
 ## ...bother?
@@ -25,7 +31,10 @@ Instead of using the sluggish Accessibility API, SwitchBox talks directly to the
 This lets it get information about the windows that are currently open, without asking anyone else, and including X11 windows. This is subject to some simple filtering to remove most junk window objects.
 
 But:
-* Window order information is inferred from their layering.
-    This means that float-on-top windows confuse things a little, as does whole-app (command-tab) switching etc.
-* Some apps create junk that isn't discernible from a real, useful window.
+
+*   Window order information is inferred from their layering.
+    
+This means that float-on-top windows confuse things a little, as does whole-app (command-tab) switching etc.
+*   Some apps create junk that isn't discernible from a real, useful window.
+
     Microsoft Word, for example, creates lots of annoying clutter. Perhaps a blacklist might come in handy here.
