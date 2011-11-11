@@ -18,7 +18,7 @@
 int active = 0;
 CGSConnectionID cid;
 CFMachPortRef tap;
-CFArrayRef windows;
+CFMutableArrayRef windows;
 
 void get_window_list(void) {
     CFArrayRef allwnd = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements,0);
@@ -114,7 +114,7 @@ void post_ui_callback(int type) {
 CGEventRef key_callback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *ctx) {
     if (type==kCGEventTapDisabledByTimeout || type & 0x80000000) {
         dispatch_sync(dispatch_get_main_queue(), ^{fprintf(stderr, "reenabling tap\n"); CGEventTapEnable(tap, true);});
-        return;
+        return 0;
     }
 
     int flags = CGEventGetFlags(event);
@@ -143,7 +143,7 @@ CGEventRef key_callback(CGEventTapProxy proxy, CGEventType type, CGEventRef even
     return 0;
 }
 
-void on_init(void) {
+void * on_init(void *arg) {
     sleep(1);
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     unsetenv("DYLD_INSERT_LIBRARIES");

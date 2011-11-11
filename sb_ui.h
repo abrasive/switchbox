@@ -7,7 +7,7 @@ typedef enum {
 } ui_call;
 
 extern CGSConnectionID cid;
-extern CFArrayRef windows;
+extern CFMutableArrayRef windows;
 
 void ui_init(void);
 void ui_release(void);
