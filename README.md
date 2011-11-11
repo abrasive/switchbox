@@ -34,7 +34,10 @@ But:
 
 *   Window order information is inferred from their layering.
     
-This means that float-on-top windows confuse things a little, as does whole-app (command-tab) switching etc.
+    This means that float-on-top windows confuse things a little, as does
+whole-app (command-tab) switching etc.
+
 *   Some apps create junk that isn't discernible from a real, useful window.
 
-    Microsoft Word, for example, creates lots of annoying clutter. Perhaps a blacklist might come in handy here.
+    Microsoft Word, for example, creates lots of annoying clutter. Perhaps a
+blacklist might come in handy here.
