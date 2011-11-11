@@ -8,6 +8,8 @@ Default theme is "high contrast" (hc). Recompile with UI=win32 for the original 
 
     make clean UI=win32 run
 
+If you want to change fonts, colours, etc., you will find the appropriate #defines near the top of the relevant sb_ui_*.m
+
 # Why...
 ## ...bother?
 OS X only lets you switch between applications, with Command-Tab.
