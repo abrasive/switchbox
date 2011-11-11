@@ -68,7 +68,7 @@ void new_window(CGWindowID *pwid, CGContextRef *pctx, int width, int height) {
     ypos = (CGDisplayPixelsHigh(disp) - height)/2;
 
     CGRect rect = CGRectMake(xpos,ypos,width,height);
-    CGSRegionRef *reg;
+    CGSRegionRef reg;
     CGWindowID wid;
     CGContextRef ctx;
     CGSNewRegionWithRect(&rect, &reg);
@@ -169,7 +169,7 @@ void draw_icon(CGContextRef ctx, pid_t pid, int row, int col) {
 CTFontRef ui_fnt;
 int ui_rows, ui_cols;
 int draw_icon_row, draw_icon_col;
-void draw_window_icon(CFDictionaryRef *val, void *ctx) {
+void draw_window_icon(CFDictionaryRef val, void *ctx) {
     CFNumberRef pidref = CFDictionaryGetValue(val, kCGWindowOwnerPID);
     long pid;
     CFNumberGetValue(pidref, kCFNumberLongType, &pid);
@@ -219,7 +219,7 @@ int ui_callback(ui_call action) {
         CFRange range = CFRangeMake(0,nwind);
         draw_icon_row = ui_rows - 1;
         draw_icon_col = 0;
-        CFArrayApplyFunction(windows, range, draw_window_icon, ctx); 
+        CFArrayApplyFunction(windows, range, (CFArrayApplierFunction)draw_window_icon, ctx); 
 
         CGSOrderWindow(cid, wid, kCGSOrderAbove, 0);
 
