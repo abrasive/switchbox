@@ -10,8 +10,9 @@
 #include "cg_priv.h"
 #include "sb_ui.h"
 
-#define fFontFace "FixedsysExcelsiorIIIb"
+#define fFontFace "GillSans"
 #define fFontSize (16)
+#define fAntialias (1)
 
 #define CSC(c) ((c*1.0)/255.0)
 #define COLOR(r,g,b) CSC(r), CSC(g), CSC(b)
@@ -56,7 +57,8 @@ void new_window(CGWindowID *pwid, CGContextRef *pctx, int width, int height) {
     CGSSetWindowTags(cid, wid, tags, 32);
     CGSSetWindowLevel(cid, wid, 32);
 
-    CGContextSetShouldAntialias(ctx, false);
+    if (!fAntialias)
+        CGContextSetShouldAntialias(ctx, false);
 
     CGContextErase(ctx);
     CGContextSetRGBFillColor(ctx, cBG, 1.0);
