@@ -10,6 +10,8 @@ Default theme is "high contrast" (hc). Recompile with UI=win32 for the original 
 
 If you want to change fonts, colours, etc., you will find the appropriate #defines near the top of the relevant sb_ui_*.m
 
+This has some bugs; in particular, it can pop the apple menu when switching to X11 apps. I use this app constantly, so it should get fixed as soon as I have time to look into it; dealing with X11 windows is subtle.
+
 # Why...
 ## ...bother?
 OS X only lets you switch between applications, with Command-Tab.
